@@ -12,15 +12,15 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
 
     Optional<Movie> findById(Long id);
 
-    @Query(value = "select m1.producers, max(m1.`year` - m2.`year`), m1.year, m2.year from movies m1 join movies m2 on m1.producers = m2.producers and m1.`year` > m2.`year` and m1.winner is true  "
-            + "where abs(m1.`year`- m2.`year`) = "
+    @Query(value = "select m1.producers, m1.`year` - m2.`year`, m1.`year`, m2.`year` from movies m1 join movies m2 on m1.producers = m2.producers and m1.`year` > m2.`year` "
+            + "where m1.`year`- m2.`year` = "
             + "(select max(m1.`year`- m2.`year`) from movies m1 join movies m2 on m1.producers = m2.producers and m1.`year` > m2.`year` and m1.winner is true) "
             + "group by m1.id "
-            + "having max(m1.`year`- m2.`year`) > 0", nativeQuery = true)
+            + "having max(m1.`year` - m2.`year`) > 0", nativeQuery = true)
     List<AwardInterval> findProducerWithMaxConsecutiveAwardsInterval();
 
-    @Query(value = "select m1.producers, min(m1.`year` - m2.`year`), m1.year, m2.year from movies m1 join movies m2 on m1.producers = m2.producers and m1.`year` > m2.`year` and m1.winner is true  "
-            + "where abs(m1.`year`- m2.`year`) = "
+    @Query(value = "select m1.producers, m1.`year` - m2.`year`, m1.year, m2.year from movies m1 join movies m2 on m1.producers = m2.producers and m1.`year` > m2.`year` "
+            + "where m1.`year`- m2.`year` = "
             + "(select min(m1.`year`- m2.`year`) from movies m1 join movies m2 on m1.producers = m2.producers and m1.`year` > m2.`year` and m1.winner is true) "
             + "group by m1.id "
             + "having min(m1.`year`- m2.`year`) > 0", nativeQuery = true)

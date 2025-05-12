@@ -55,7 +55,7 @@ public class MovieController {
         }
     }
 
-    @Operation(summary = "Get specific data",
+    @Operation(summary = "Get minimal and maximum consecutive awards interval",
             description = "Returns the minimal and maximum consecutive awards interval")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successfully retrieved"),
@@ -99,7 +99,7 @@ public class MovieController {
             return "Movie not found.";
         } else {
             movieRepository.deleteById(id);
-            return "Deleted employee with id: " + id;
+            return "Deleted movie with id: " + id;
         }
     }
 }
