@@ -1,0 +1,2 @@
+CREATE TABLE MOVIES (year INT, title VARCHAR(100), studios VARCHAR(100), producers VARCHAR(255), winner boolean)
+AS SELECT * FROM CSVREAD('C:/Users/dudas/Desktop/movielist.csv', null, 'fieldSeparator=;');
