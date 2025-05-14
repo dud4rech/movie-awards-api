@@ -28,14 +28,6 @@ Executar:
 mvn exec:java -Dexec.mainClass="com.razzies.Main"
 ```
 
-### Alterar o caminho do arquivo CSV
-
-No arquivo schema.sql (localizado na pasta resources) alterar o caminho do trecho abaixo, informando o local correto do **movielist.csv**
-
-```
-CSVREAD('C:/xxx/xxx/xxx/movielist.csv', null, 'fieldSeparator=;');
-```
-
 ### Opcional: testar a API no Swagger UI
 
 Depois de rodar a aplicação é só acessar a url http://localhost:8080/swagger-ui/index.html :)
