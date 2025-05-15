@@ -14,6 +14,6 @@ CREATE VIEW WINNERS AS
 SELECT M.year, STRING_TRIM(REGEXP_SUBSTR(STRING_REPLACE(M.producers, ' and ', ','), '[^,]*', 1, nums.n)) AS NAME
 FROM MOVIES M
 JOIN (SELECT * FROM SYSTEM_RANGE(1, 20)) AS nums(n)
-ON REGEXP_SUBSTR(REPLACE(M.producers, ' and ', ','), '[^,]*', 1, nums.n) IS NOT NULL
-AND REGEXP_SUBSTR(REPLACE(M.producers, ' and ', ','), '[^,]*', 1, nums.n) <> ''
+ON REGEXP_SUBSTR(STRING_REPLACE(M.producers, ' and ', ','), '[^,]*', 1, nums.n) IS NOT NULL
+AND REGEXP_SUBSTR(STRING_REPLACE(M.producers, ' and ', ','), '[^,]*', 1, nums.n) <> ''
 WHERE M.winner IS TRUE;
